@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/sunny_background"
+    tools:context=".MainActivity">
+
+
+    <!-- ================= SEARCH BAR ================= -->
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="8dp"
+
+        android:background="@drawable/searchviewshape"
+        android:iconifiedByDefault="false"
+        android:queryHint="Search For A City"
+        android:searchIcon="@drawable/search"
+        android:theme="@style/SearchViewTheme"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <!-- ================= CITY NAME ================= -->
+
+    <TextView
+        android:id="@+id/cityName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="6dp"
+
+        android:drawableLeft="@drawable/loctaion"
+        android:drawablePadding="10dp"
+
+        android:fontFamily="@font/merriweathersans_medium"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/searchView" />
+
+
+    <!-- ================= USE MY LOCATION ================= -->
+
+    <Button
+        android:id="@+id/currentLocationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+
+        android:layout_marginTop="2dp"
+
+        android:minWidth="0dp"
+        android:minHeight="0dp"
+
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
+
+        android:text="Use My Location"
+        android:textColor="@color/black"
+        android:textSize="11sp"
+
+        android:backgroundTint="@android:color/white"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cityName" />
+
+
+    <!-- ================= SUN ANIMATION ================= -->
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+
+        android:layout_marginTop="8dp"
+
+        app:lottie_rawRes="@raw/sun"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentLocationButton" />
+
+
+    <!-- ================= TODAY ================= -->
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:foreground="?attr/selectableItemBackground"
+
+        android:fontFamily="@font/merriweathersans_bold"
+        android:text="Today"
+        android:textColor="@color/black"
+        android:textSize="28sp"
+
+        app:layout_constraintStart_toEndOf="@id/lottieAnimationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/currentLocationButton" />
+
+
+    <!-- ================= TEMPERATURE ================= -->
+
+    <TextView
+        android:id="@+id/temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/merriweathersans_semibold"
+        android:text="00:00 °C"
+        android:textColor="@color/black"
+        android:textSize="36sp"
+
+        app:layout_constraintStart_toStartOf="@id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView2" />
+
+    <!-- ================= CURRENT AQI ================= -->
+
+    <TextView
+        android:id="@+id/aqiTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Current AQI"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/temp"
+        app:layout_constraintStart_toStartOf="@id/textView2"
+        app:layout_constraintEnd_toEndOf="@id/textView2" />
+
+    <TextView
+        android:id="@+id/aqiValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="--"
+        android:textColor="@color/black"
+        android:textSize="26sp"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/aqiTitle"
+        app:layout_constraintStart_toStartOf="@id/aqiTitle"
+        app:layout_constraintEnd_toEndOf="@id/aqiTitle" />
+
+    <TextView
+        android:id="@+id/aqiCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Air quality unavailable"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/aqiValue"
+        app:layout_constraintStart_toStartOf="@id/aqiValue"
+        app:layout_constraintEnd_toEndOf="@id/aqiValue" />
+
+
+    <!-- ================= WEATHER ================= -->
+
+    <TextView
+        android:id="@+id/weather"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="4dp"
+
+        android:fontFamily="@font/merriweathersans_regular"
+        android:text="SUNNY"
+        android:textAllCaps="true"
+        android:textColor="@color/black"
+        android:textSize="18sp"
+
+        app:layout_constraintStart_toStartOf="@id/lottieAnimationView"
+        app:layout_constraintEnd_toEndOf="@id/lottieAnimationView"
+        app:layout_constraintTop_toBottomOf="@id/lottieAnimationView" />
+
+
+
+
+    <!-- ================= MAX TEMPERATURE ================= -->
+
+    <TextView
+        android:id="@+id/max_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/merriweathersans_regular"
+        android:text="Max : 00:00 °C"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/weather" />
+
+
+    <!-- ================= MIN TEMPERATURE ================= -->
+
+    <TextView
+        android:id="@+id/min_temp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:fontFamily="@font/merriweathersans_regular"
+        android:text="Min : 00:00 °C"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+
+        app:layout_constraintStart_toStartOf="@id/max_temp"
+        app:layout_constraintEnd_toEndOf="@id/max_temp"
+        app:layout_constraintTop_toBottomOf="@id/max_temp" />
+
+
+    <!-- ================= DAY ================= -->
+
+    <TextView
+        android:id="@+id/day"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="28dp"
+
+        android:fontFamily="@font/merriweathersans_bold"
+        android:text="Tuesday"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+
+        app:layout_constraintStart_toStartOf="@id/min_temp"
+        app:layout_constraintEnd_toEndOf="@id/min_temp"
+        app:layout_constraintTop_toBottomOf="@id/min_temp" />
+
+
+    <!-- ================= DATE ================= -->
+
+    <TextView
+        android:id="@+id/date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="12dp"
+
+        android:fontFamily="@font/merriweathersans_regular"
+        android:text="22 September 2026"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+
+        app:layout_constraintStart_toStartOf="@id/day"
+        app:layout_constraintEnd_toEndOf="@id/day"
+        app:layout_constraintTop_toBottomOf="@id/day" />
+
+
+    <!-- ================================================= -->
+    <!--                WEATHER CONTAINER                 -->
+    <!-- ================================================= -->
+
+    <FrameLayout
+        android:id="@+id/weatherContainer"
+        android:layout_width="0dp"
+        android:layout_height="220dp"
+
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+
+        android:background="@drawable/backgroundshape"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/date">
+
+
+        <!-- ================= INNER LAYOUT ================= -->
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+            <!-- ================================================= -->
+            <!-- CARD 1 - HUMIDITY -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:id="@+id/weatherCard1"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_width="80dp"
+                android:layout_height="88dp"
+
+                android:background="@drawable/backgroundshape"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+
+                    android:scaleType="centerInside"
+                    android:src="@drawable/humidity" />
+
+                <TextView
+                    android:id="@+id/humidity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="0.0 %"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="Humidity"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <!-- ================================================= -->
+            <!-- CARD 2 - WIND -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:id="@+id/weatherCard2"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_width="80dp"
+                android:layout_height="88dp"
+
+                android:background="@drawable/backgroundshape"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+
+                    android:scaleType="centerInside"
+                    android:src="@drawable/wind" />
+
+                <TextView
+                    android:id="@+id/windSpeed"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="0.00 m/s"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="Wind Speed"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <!-- ================================================= -->
+            <!-- CARD 3 - CONDITION -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:id="@+id/weatherCard3"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_width="80dp"
+                android:layout_height="88dp"
+
+                android:background="@drawable/backgroundshape"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+
+                    android:scaleType="centerInside"
+                    android:src="@drawable/conditions" />
+
+                <TextView
+                    android:id="@+id/condition"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="SUNNY"
+                    android:textAllCaps="true"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="Condition"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <!-- ================================================= -->
+            <!-- CARD 4 - SUNRISE -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:id="@+id/weatherCard4"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_width="80dp"
+                android:layout_height="88dp"
+
+                android:background="@drawable/backgroundshape"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+
+                    android:scaleType="centerInside"
+                    android:src="@drawable/sunrise" />
+
+                <TextView
+                    android:id="@+id/sun_rise"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="00:00"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="Sunrise"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <!-- ================================================= -->
+            <!-- CARD 5 - SUNSET -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:id="@+id/weatherCard5"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_width="80dp"
+                android:layout_height="88dp"
+
+                android:background="@drawable/backgroundshape"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+
+                    android:scaleType="centerInside"
+                    android:src="@drawable/sunset" />
+
+                <TextView
+                    android:id="@+id/sunset"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="00:00"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="Sunset"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <!-- ================================================= -->
+            <!-- CARD 6 - SEA -->
+            <!-- ================================================= -->
+
+            <LinearLayout
+                android:id="@+id/weatherCard6"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:layout_width="80dp"
+                android:layout_height="88dp"
+
+                android:background="@drawable/backgroundshape"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
+
+                    android:scaleType="centerInside"
+                    android:src="@drawable/sea" />
+
+                <TextView
+                    android:id="@+id/sea"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="0000 hPa"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:fontFamily="@font/merriweathersans_medium"
+                    android:gravity="center"
+                    android:text="Pressure"
+                    android:textColor="@color/black"
+                    android:textSize="10sp" />
+
+            </LinearLayout>
+
+
+            <!-- ================================================= -->
+            <!--                    FLOW                           -->
+            <!-- ================================================= -->
+
+            <androidx.constraintlayout.helper.widget.Flow
+                android:id="@+id/weatherFlow"
+
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+
+                app:constraint_referenced_ids="weatherCard1,weatherCard2,weatherCard3,weatherCard4,weatherCard5,weatherCard6"
+
+                app:flow_wrapMode="chain"
+                app:flow_maxElementsWrap="3"
+
+                app:flow_horizontalStyle="packed"
+                app:flow_verticalStyle="packed"
+
+                app:flow_horizontalBias="0.5"
+                app:flow_verticalBias="0.5"
+
+                app:flow_horizontalGap="12dp"
+                app:flow_verticalGap="12dp"
+
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </FrameLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
